@@ -142,11 +142,24 @@
     <article id="post-angular" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/08/31/angular/">angular中自定义组件实现双向绑定</a>
+    </h1>
+  
+
+        
+        <a href="/2017/08/31/angular/" class="archive-article-date">
+  	<time datetime="2017-08-31T08:20:19.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-31</time>
+</a>
+        
+      </header>
+    
     <div class="article-entry" itemprop="articleBody">
       
-        <p>###使用get,set关键字</p>
-<hr>
-<p>get返回父组件变化后的值<br>set为组件值产生变化后父组件改变</p>
+        <h3 id="使用get-set关键字"><a href="#使用get-set关键字" class="headerlink" title="使用get,set关键字"></a>使用get,set关键字</h3><p>get返回父组件变化后的值<br>set为组件值产生变化后父组件改变</p>
 <figure class="highlight typescript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> &#123;Input, Output &#125; <span class="keyword">from</span> <span class="string">'@angular/core'</span>;</div><div class="line">........</div><div class="line"><span class="keyword">this</span>.myModelValue : <span class="built_in">boolean</span>;</div><div class="line"><span class="meta">@Input</span>()</div><div class="line"><span class="keyword">get</span> myModel()&#123;</div><div class="line"> <span class="keyword">return</span> <span class="keyword">this</span>.myModelValue;</div><div class="line">&#125;</div><div class="line"><span class="keyword">set</span> myModel(val:<span class="built_in">boolean</span>)&#123;</div><div class="line">  <span class="keyword">this</span>.myModelValue = val;</div><div class="line">  <span class="keyword">this</span>.myModelChange.emit(<span class="keyword">this</span>.myModelValue);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="meta">@Output</span>() myModelChange:EventEmitter&lt;<span class="built_in">string</span>&gt; = <span class="keyword">new</span> EventEmitter&lt;<span class="built_in">string</span>&gt;();</div></pre></td></tr></table></figure>
 <p>output绑定事件，由组件绑定事件EventEmitter向父组件传输信息，属性名+属性后缀Change 是约定的固定写法</p>
 <p>在父组件引用</p>
